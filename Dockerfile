@@ -29,5 +29,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # setup entrypoint
 COPY ./ros_entrypoint.sh /
 RUN chmod +x /ros_entrypoint.sh
-VOLUME /opt/ros
+COPY /opt/ros/foxy /opt/ros/noetic/foxy
+VOLUME /opt/ros/noetic
 CMD ["/bin/sh", "-c", "trap 'exit 147' TERM; tail -f /dev/null & wait ${!}"]
