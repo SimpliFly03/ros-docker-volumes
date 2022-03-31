@@ -34,8 +34,6 @@ jobs:
       - name: Build image
         run: | 
           docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
-          docker container rm -f $(docker container ls --filter "status=exited" -q)
-          docker image rm $(docker image ls -q)
 
         
       - name: Install cosign
