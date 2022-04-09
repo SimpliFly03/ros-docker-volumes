@@ -17,19 +17,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-desktop \
     ros-noetic-roscpp-tutorials \
     ros-noetic-rospy-tutorials \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # install ros2 packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-ros1-bridge \
     ros-foxy-demo-nodes-cpp \
     ros-foxy-demo-nodes-py \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # setup entrypoint
 COPY ./ros_entrypoint.sh /
