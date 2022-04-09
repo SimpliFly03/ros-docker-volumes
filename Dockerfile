@@ -1,6 +1,6 @@
 # This is an auto generated Dockerfile for ros:ros1-bridge
 # generated from docker_images_ros2/ros1_bridge/create_ros_ros1_bridge_image.Dockerfile.em
-FROM ros:foxy-ros-base-focal
+FROM registry.gitlab.com/autowarefoundation/autoware.auto/autowareauto/amd64/ade-foxy:master
 
 # setup sources.list
 RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros1-latest.list
@@ -26,10 +26,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-demo-nodes-py \
     && rm -rf /var/lib/apt/lists/*
 
+# Update
+RUN apt-get update && \
+    apt-get -y dist-upgrade && \
+    rm -rf /var/lib/apt/lists/*
+
 # setup entrypoint
 COPY ./ros_entrypoint.sh /
 RUN chmod +x /ros_entrypoint.sh
-RUN mkdir -p /opt/ros/noetic/foxy
-RUN mv /opt/ros/foxy /opt/ros/noetic/foxy
-VOLUME /opt/ros/noetic
 CMD ["/bin/sh", "-c", "trap 'exit 147' TERM; tail -f /dev/null & wait ${!}"]
