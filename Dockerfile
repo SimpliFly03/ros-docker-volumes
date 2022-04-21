@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-demo-nodes-py \
     ros-foxy-rqt-gui-py \
     ros-foxy-derived-object-msgs \
-    && apt-get install -y software-properties-common && \
+    && apt-get install -y software-properties-common nano && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt-get install -y python3.7 python3.7-venv && \
     apt-get remove -y mesa-vulkan-drivers && \
