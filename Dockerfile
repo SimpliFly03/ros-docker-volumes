@@ -29,7 +29,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get install -y python3.7 python3.7-venv && \
     apt-get remove -y mesa-vulkan-drivers && \
     apt-get install -y python3-opencv && \
-    apt-get install -y ~nros-foxy-rqt* && \
     rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
