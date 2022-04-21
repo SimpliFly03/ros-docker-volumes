@@ -22,8 +22,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # install ros2 packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-ros1-bridge \
-    ros-foxy-demo-nodes-cpp \
-    ros-foxy-demo-nodes-py \
     ros-foxy-rqt-gui-py \
     ros-foxy-derived-object-msgs \
     && apt-get install -y software-properties-common nano && \
