@@ -24,7 +24,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-ros1-bridge \
     ros-foxy-demo-nodes-cpp \
     ros-foxy-demo-nodes-py \
-    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    ros-foxy-rqt-gui-py \
+    ros-foxy-derived-object-msgs \
+    && sudo apt install software-properties-common && \
+    sudo add-apt-repository -y ppa:deadsnakes/ppa && \
+    sudo apt-get install python3.7 python3.7-venv && \
+    sudo apt remove mesa-vulkan-drivers && \
+    sudo apt install python3-opencv && \
+    rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
 RUN apt-get update && \
