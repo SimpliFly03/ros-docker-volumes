@@ -10,6 +10,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6
 
 ENV ROS1_DISTRO noetic
 ENV ROS2_DISTRO galactic
+ENV ROS_DISTRO galactic
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
