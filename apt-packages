@@ -33,4 +33,4 @@ wget
 tmux
 
 # clang-format
-ros-$ROS_DISTRO-ament-clang-format
+ros-galactic-ament-clang-format
