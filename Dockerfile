@@ -54,7 +54,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-galactic-demo-nodes-cpp \
     ros-galactic-demo-nodes-py \
     ros-galactic-rqt-gui-py \
-    ros-galactic-derived-object-msgs \
     && apt-get install -y software-properties-common nano && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt-get install -y python3.7 python3.7-venv && \
