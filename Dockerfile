@@ -1,6 +1,6 @@
 # This is an auto generated Dockerfile for ros:ros1-bridge
 # generated from docker_images_ros2/ros1_bridge/create_ros_ros1_bridge_image.Dockerfile.em
-FROM ghcr.io/autowarefoundation/autoware-universe:latest
+FROM ghcr.io/autowarefoundation/autoware-universe:galactic-latest-cuda-amd64
 
 # setup sources.list
 RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros1-latest.list
