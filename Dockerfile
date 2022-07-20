@@ -23,7 +23,7 @@ COPY apt-packages /tmp/
 RUN apt-get update && \
     apt-get install -y \
         $(cat /tmp/apt-packages | cut -d# -f1 | envsubst) \
-    && rm -rf /var/lib/apt/lists/* /tmp/apt-packages
+    && rm -rf /var/lib/apt/lists/* /tmp/apt-packages && apt-get clean
 
 
 COPY bashrc-git-prompt /
@@ -31,7 +31,8 @@ RUN cat /bashrc-git-prompt >> /etc/skel/.bashrc && \
     rm /bashrc-git-prompt
 COPY gdbinit /etc/gdb/
 
-RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev
+RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev && \
+    rm -rf /var/lib/apt/lists/* && apt-get clean
 
 
 # install packages
