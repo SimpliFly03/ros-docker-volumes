@@ -36,19 +36,34 @@ RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev && \
 
 
 # install packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-melodic-desktop-full=1.4.1-0* \
-    software-properties-common \
+RUN apt-get update && apt-get install -y --no-install-recommends ros-melodic-desktop-full=1.4.1-0* \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
+    python-rosdep python-rosinstall-generator python-vcstool python-rosinstall build-essential \
+    ros-melodic-catkin python-catkin-tools \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+
+RUN apt-get update && apt-get install -y software-properties-common \
     nano htop python3-pip python3-setuptools \
     python3-pybind11 libtins-dev \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
     cmake pkg-config mesa-utils libglu1-mesa-dev freeglut3-dev mesa-common-dev \
     libglew-dev libglfw3 libglfw3-dev libglm-dev \
     libao-dev libmpg123-dev \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
     libopencv-dev libqglviewer-dev-qt5 freeglut3-dev qtbase5-dev \
-    python-rosdep python-rosinstall-generator python-vcstool python-rosinstall build-essential \
-    ros-melodic-catkin python-catkin-tools \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
     iputils-ping avahi-daemon \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN update-rc.d avahi-daemon enable
 
 # Update
 #RUN apt-get update && \
