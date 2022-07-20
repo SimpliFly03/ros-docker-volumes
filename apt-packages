@@ -31,6 +31,3 @@ vim
 xdg-utils
 wget
 tmux
-
-# clang-format
-ros-galactic-ament-clang-format
