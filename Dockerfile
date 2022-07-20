@@ -63,8 +63,6 @@ RUN apt-get update && apt-get install -y \
     iputils-ping avahi-daemon \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
-RUN update-rc.d avahi-daemon enable
-
 # Update
 #RUN apt-get update && \
 #    apt-get -y dist-upgrade && \
