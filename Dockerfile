@@ -1,16 +1,9 @@
 # This is an auto generated Dockerfile for ros:ros1-bridge
 # generated from docker_images_ros2/ros1_bridge/create_ros_ros1_bridge_image.Dockerfile.em
-FROM ghcr.io/autowarefoundation/autoware-universe:galactic-latest-cuda-amd64
+FROM ros:melodic-perception-bionic
 
-# setup sources.list
-RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros1-latest.list
-
-# setup keys
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-
-ENV ROS1_DISTRO noetic
-ENV ROS2_DISTRO galactic
-ENV ROS_DISTRO galactic
+ENV ROS1_DISTRO melodic
+ENV ROS_DISTRO melodic
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -41,27 +34,11 @@ COPY gdbinit /etc/gdb/
 RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev
 
 
-# install ros packages
+# install packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-noetic-ros-comm \
-    ros-noetic-desktop \
-    ros-noetic-roscpp-tutorials \
-    ros-noetic-rospy-tutorials \
+    ros-melodic-desktop-full=1.4.1-0* \
+    software-properties-common nano htop \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
-
-# install ros2 packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-galactic-ros1-bridge \
-    ros-galactic-demo-nodes-cpp \
-    ros-galactic-demo-nodes-py \
-    ros-galactic-rqt-gui-py \
-    && apt-get install -y software-properties-common nano && \
-    add-apt-repository -y ppa:deadsnakes/ppa && \
-    apt-get install -y python3.7 python3.7-venv && \
-    apt-get remove -y mesa-vulkan-drivers && \
-    apt-get install -y python3-opencv && \
-    apt-get install -y ~nros-galactic-rqt* && \
-    rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
 #RUN apt-get update && \
