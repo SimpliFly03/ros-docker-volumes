@@ -65,7 +65,7 @@ RUN echo "export COLCON_DEFAULTS_FILE=/usr/local/etc/colcon-defaults.yaml" >> \
     /etc/skel/.bashrc
 
 RUN sed -i 's/files\ dns/files\ mdns\_minimal\ \[NOTFOUND\=return\]\ dns/' /etc/nsswitch.conf && \
-    sed -i 's/\#enable\-dbus\=yes/enable\-dbus\=no/'
+    sed -i 's/\#enable\-dbus\=yes/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf
 
 ## Create entrypoint
 # hadolint ignore=DL3059
