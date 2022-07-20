@@ -15,7 +15,7 @@ env:
   # Use docker.io for Docker Hub if empty
   DOCKER_DRIVER: overlay2
   
- jobs:
+jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
@@ -54,4 +54,3 @@ env:
           tags: ${{ env.IMAGE_ID }}:${{ env.VERSION }}
           cache-from: type=registry,ref=${{ env.IMAGE_ID }}:${{ env.VERSION }}
           cache-to: type=inline
-        
