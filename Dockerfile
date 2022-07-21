@@ -44,7 +44,10 @@ RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev
 # install ros packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-ros-comm \
+    ros-noetic-core \
+    ros-noetic-base \
     ros-noetic-desktop \
+    ros-noetic-desktop-full \
     ros-noetic-roscpp-tutorials \
     ros-noetic-rospy-tutorials \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
@@ -65,6 +68,11 @@ RUN apt-get update && apt-get install -y software-properties-common nano && \
     apt-get install -y python3-opencv && \
     apt-get install -y ~nros-galactic-rqt* && \
     rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
+    python3-rosdep python3-rosinstall-generator python3-vcstool python3-rosinstall build-essential \
+    ros-noetic-catkin python3-catkin-tools \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
 #RUN apt-get update && \
