@@ -44,8 +44,6 @@ RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev
 # install ros packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-ros-comm \
-    ros-noetic-core \
-    ros-noetic-base \
     ros-noetic-desktop \
     ros-noetic-desktop-full \
     ros-noetic-roscpp-tutorials \
