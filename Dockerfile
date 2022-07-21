@@ -83,5 +83,10 @@ RUN sed -i 's/files\ dns/files\ mdns\_minimal\ \[NOTFOUND\=return\]\ dns/' /etc/
 ## Create entrypoint
 # hadolint ignore=DL3059
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" > /etc/bash.bashrc
+
+# Auto start avahi daemon only if it is not already started
+COPY start-avahi.sh /bin/start-avahi.sh
+RUN echo "/bin/start-avahi.sh" >> /etc/bash.bashrc
+
 CMD ["/bin/bash"]
 
