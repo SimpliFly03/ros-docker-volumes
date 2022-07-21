@@ -87,6 +87,7 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" > /etc/bash.bashrc
 # Auto start avahi daemon only if it is not already started
 COPY start-avahi.sh /bin/start-avahi.sh
 RUN echo "/bin/start-avahi.sh" >> /etc/bash.bashrc
+RUN chmod +x /bin/start-avahi.sh
 
 CMD ["/bin/bash"]
 
