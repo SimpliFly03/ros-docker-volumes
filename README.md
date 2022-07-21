@@ -6,6 +6,10 @@
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
+```
+rocker --nvidia --x11 --user --name autoware --privileged --pulse --network host --env NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics --oyr-run-arg " -h autoware --cap-add=SYS_PTRACE --add-host ade:127.0.0.1 -e RMW_IMPLEMENTATION=rmw_cyclonedds_cpp --ipc=host" --volume $HOME/adehome/adehome-universe:$HOME -- ghcr.io/simplifly03/ros-ade-simp:autoware.universe
+```
+
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
 ## Add your files
