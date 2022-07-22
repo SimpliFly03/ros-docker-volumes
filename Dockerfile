@@ -10,11 +10,13 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6
 
 ENV ROS1_DISTRO noetic
 ENV ROS2_DISTRO foxy
+ENV ROS_DISTRO foxy
 
 # install ros packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-ros-comm \
     ros-noetic-desktop \
+    ros-noetic-desktop-full \
     ros-noetic-roscpp-tutorials \
     ros-noetic-rospy-tutorials \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
@@ -26,13 +28,31 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-demo-nodes-py \
     ros-foxy-rqt-gui-py \
     ros-foxy-derived-object-msgs \
-    && apt-get install -y software-properties-common nano && \
+    ~nros-foxy-rqt* && \
+    rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt get install -y software-properties-common nano htop && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt-get install -y python3.7 python3.7-venv && \
     apt-get remove -y mesa-vulkan-drivers && \
     apt-get install -y python3-opencv && \
-    apt-get install -y ~nros-foxy-rqt* && \
     rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
+    python3-rosdep python3-rosinstall-generator python3-vcstool python3-rosinstall build-essential \
+    ros-noetic-catkin python3-catkin-tools \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
+    iputils-ping avahi-daemon \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+    
+# Auto start avahi
+COPY start-avahi.sh /bin/start-avahi.sh
+RUN chmod +x /bin/start-avahi.sh
+RUN sed -i 's/\#enable\-dbus\=yes/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf
+RUN echo "/bin/start-avahi.sh" >> /etc/bash.bashrc
 
 # Update
 #RUN apt-get update && \
