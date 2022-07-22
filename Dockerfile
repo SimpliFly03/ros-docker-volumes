@@ -71,6 +71,10 @@ RUN apt-get update && apt-get install -y \
     python3-rosdep python3-rosinstall-generator python3-vcstool python3-rosinstall build-essential \
     ros-noetic-catkin python3-catkin-tools \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y \
+    iputils-ping avahi-daemon \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
 #RUN apt-get update && \
@@ -86,10 +90,14 @@ COPY gitconfig /etc/gitconfig
 RUN echo "export COLCON_DEFAULTS_FILE=/usr/local/etc/colcon-defaults.yaml" >> \
     /etc/skel/.bashrc
 
-
-
 ## Create entrypoint
 # hadolint ignore=DL3059
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" > /etc/bash.bashrc
+
+# Auto start avahi
+COPY start-avahi.sh /bin/start-avahi.sh
+RUN sed -i 's/\#enable\-dbus\=yes/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf
+RUN echo "/bin/start-avahi.sh" >> /etc/bash.bashrc
+
 CMD ["/bin/bash"]
 
