@@ -96,6 +96,7 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" > /etc/bash.bashrc
 
 # Auto start avahi
 COPY start-avahi.sh /bin/start-avahi.sh
+RUN chmod +x /bin/start-avahi.sh
 RUN sed -i 's/\#enable\-dbus\=yes/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf
 RUN echo "/bin/start-avahi.sh" >> /etc/bash.bashrc
 
