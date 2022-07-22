@@ -78,7 +78,8 @@ RUN apt-get update && apt-get install -y \
     
 RUN apt-get update && apt-get install -y \
     libopencv-dev libqglviewer-dev-qt5 \
-    freeglut3-dev qtbase5-dev 
+    freeglut3-dev qtbase5-dev \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Update
 #RUN apt-get update && \
