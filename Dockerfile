@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ~nros-foxy-rqt* && \
     rm -rf /var/lib/apt/lists/* && apt-get clean
     
-RUN apt get install -y software-properties-common nano htop && \
+RUN apt-get update && apt-get install -y software-properties-common nano htop && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt-get install -y python3.7 python3.7-venv && \
     apt-get remove -y mesa-vulkan-drivers && \
