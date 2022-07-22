@@ -47,6 +47,10 @@ RUN apt-get update && apt-get install -y \
     iputils-ping avahi-daemon \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
+RUN apt-get update && apt-get install -y \
+    libopencv-dev libqglviewer-dev-qt5 \
+    freeglut3-dev qtbase5-dev \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
     
 # Auto start avahi
 COPY start-avahi.sh /bin/start-avahi.sh
