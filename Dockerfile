@@ -66,7 +66,8 @@ RUN apt-get update && wget https://packages.microsoft.com/config/ubuntu/20.04/pa
     
 RUN apt-get update && apt-get install -y ros-noetic-rosauth ros-foxy-rosauth \
     can-utils libsocketcan-dev libsocketcan2 ros-noetic-socketcan-bridge \
-    ros-noetic-socketcan-interface ros-foxy-ros2-socketcan
+    ros-noetic-socketcan-interface ros-foxy-ros2-socketcan \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
     
 # Auto start avahi
 COPY start-avahi.sh /bin/start-avahi.sh
