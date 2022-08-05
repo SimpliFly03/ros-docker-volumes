@@ -64,6 +64,10 @@ RUN apt-get update && wget https://packages.microsoft.com/config/ubuntu/20.04/pa
     apt-get update && apt-get install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0 \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
+RUN apt-get update && apt-get install -y ros-noetic-rosauth ros-foxy-rosauth \
+    can-utils libsocketcan-dev libsocketcan2 ros-noetic-socketcan-bridge \
+    ros-noetic-socketcan-interface ros-foxy-ros2-socketcan
+    
 # Auto start avahi
 COPY start-avahi.sh /bin/start-avahi.sh
 RUN chmod +x /bin/start-avahi.sh
