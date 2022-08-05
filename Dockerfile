@@ -80,6 +80,22 @@ RUN apt-get update && apt-get install -y \
     freeglut3-dev qtbase5-dev \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
 
+RUN apt-get update && apt-get install -y wget gpg && \
+    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
+    install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg && \
+    sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' && \
+    rm -f packages.microsoft.gpg && apt-get install -y apt-transport-https && apt-get update && apt-get install -y code \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && \
+    apt-get update && apt-get install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0 \
+    && rm -rf /var/lib/apt/lists/* && apt-get clean
+    
+RUN apt-get update && apt-get install -y ros-noetic-rosauth ros-foxy-rosauth \
+    can-utils libsocketcan-dev libsocketcan2 ros-noetic-socketcan-bridge \
+    ros-noetic-socketcan-interface ros-foxy-ros2-socketcan
+
 # Update
 #RUN apt-get update && \
 #    apt-get -y dist-upgrade && \
