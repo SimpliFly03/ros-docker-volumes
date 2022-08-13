@@ -92,7 +92,7 @@ RUN apt-get update && wget https://packages.microsoft.com/config/ubuntu/20.04/pa
     apt-get update && apt-get install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0 \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
-RUN apt-get update && apt-get install -y ros-noetic-rosauth ros-galactic-rosauth \
+RUN apt-get update && apt-get install -y ros-noetic-rosauth \
     can-utils libsocketcan-dev libsocketcan2 ros-noetic-socketcan-bridge \
     ros-noetic-socketcan-interface ros-galactic-ros2-socketcan \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
@@ -121,7 +121,7 @@ RUN chmod +x /bin/start-avahi.sh
 RUN sed -i 's/\#enable\-dbus\=yes/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf
 RUN echo "/bin/start-avahi.sh" >> /etc/bash.bashrc
 
-RUN apt-get update
+RUN rm /etc/apt/apt.conf.d/docker-clean && apt-get update
 
 CMD ["/bin/bash"]
 
