@@ -21,7 +21,6 @@ netstat-nat
 nodejs
 openssh-client
 python3-bloom
-python3-catkin-pkg
 python3-colcon-common-extensions
 python3-pip
 shellcheck
@@ -33,4 +32,4 @@ wget
 tmux
 
 # clang-format
-ros-galactic-ament-clang-format
+ros-humble-ament-clang-format
