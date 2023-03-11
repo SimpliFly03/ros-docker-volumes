@@ -36,7 +36,6 @@ RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev
 
 # install ros2 packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-humble-ros1-bridge \
     ros-humble-demo-nodes-cpp \
     ros-humble-demo-nodes-py \
     ros-humble-rqt-gui-py \
