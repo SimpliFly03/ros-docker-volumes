@@ -1,16 +1,9 @@
 # This is an auto generated Dockerfile for ros:ros1-bridge
 # generated from docker_images_ros2/ros1_bridge/create_ros_ros1_bridge_image.Dockerfile.em
-FROM ghcr.io/autowarefoundation/autoware-universe:galactic-latest-cuda-amd64
+FROM ghcr.io/autowarefoundation/autoware-universe:humble-latest-cuda-amd64
 
-# setup sources.list
-RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros1-latest.list
-
-# setup keys
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-
-ENV ROS1_DISTRO noetic
-ENV ROS2_DISTRO galactic
-ENV ROS_DISTRO galactic
+ENV ROS2_DISTRO humble
+ENV ROS_DISTRO humble
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -41,22 +34,14 @@ COPY gdbinit /etc/gdb/
 RUN apt-get update && apt-get install -y fonts-liberation libu2f-udev
 
 
-# install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-noetic-ros-comm \
-    ros-noetic-desktop \
-    ros-noetic-desktop-full \
-    ros-noetic-roscpp-tutorials \
-    ros-noetic-rospy-tutorials \
-    && rm -rf /var/lib/apt/lists/* && apt-get clean
-
 # install ros2 packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-galactic-ros1-bridge \
-    ros-galactic-demo-nodes-cpp \
-    ros-galactic-demo-nodes-py \
-    ros-galactic-rqt-gui-py \
-    ~nros-galactic-rqt* && \
+    ros-humble-ros1-bridge \
+    ros-humble-demo-nodes-cpp \
+    ros-humble-demo-nodes-py \
+    ros-humble-rqt-gui-py \
+    ~nros-humble-rqt* \
+    ros-humble-turtlesim && \
     rm -rf /var/lib/apt/lists/* && apt-get clean
 
 RUN apt-get update && apt-get install -y software-properties-common nano && \
@@ -68,7 +53,6 @@ RUN apt-get update && apt-get install -y software-properties-common nano && \
     
 RUN apt-get update && apt-get install -y \
     python3-rosdep python3-rosinstall-generator python3-vcstool python3-rosinstall build-essential \
-    ros-noetic-catkin python3-catkin-tools \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
 RUN apt-get update && apt-get install -y \
@@ -92,9 +76,9 @@ RUN apt-get update && wget https://packages.microsoft.com/config/ubuntu/20.04/pa
     apt-get update && apt-get install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0 \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
-RUN apt-get update && apt-get install -y ros-noetic-rosauth \
-    can-utils libsocketcan-dev libsocketcan2 ros-noetic-socketcan-bridge \
-    ros-noetic-socketcan-interface ros-galactic-ros2-socketcan \
+RUN apt-get update && apt-get install -y \
+    can-utils libsocketcan-dev libsocketcan2 \
+    ros-humble-ros2-socketcan \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
 RUN apt-get update && add-apt-repository -y ppa:slonopotamus/glibc-dso && apt-get update && \
