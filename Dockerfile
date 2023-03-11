@@ -80,10 +80,6 @@ RUN apt-get update && apt-get install -y \
     ros-humble-ros2-socketcan \
     && rm -rf /var/lib/apt/lists/* && apt-get clean
     
-RUN apt-get update && add-apt-repository -y ppa:slonopotamus/glibc-dso && apt-get update && \
-    apt-get install --reinstall -y libc6-dbg libc6-i386 libc6-dev libc-dev-bin libc6 locales libc-bin \
-    && rm -rf /var/lib/apt/lists/* && apt-get clean
-    
 
 # Update
 #RUN apt-get update && \
